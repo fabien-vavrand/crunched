@@ -45,6 +45,25 @@ Future enhancements could include:
 
 2. **Configuration Path**: Update `OPENAI_CONFIG_PATH` in `backend/app/main.py` to point to your `.env` file location (default: `~/.config/.env`)
 
+## Python Environment Setup
+
+Create a virtual environment and install dependencies:
+
+```bash
+cd backend
+
+# Using venv
+python -m venv venv
+venv\Scripts\activate  # Windows: venv\Scripts\activate | Linux/Mac: source venv/bin/activate
+
+# OR using conda
+conda create -n crunched python=3.12
+conda activate crunched
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
 ## Getting Started
 
 ### Start the Backend Server
