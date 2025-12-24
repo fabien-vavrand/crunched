@@ -21,7 +21,7 @@ async def chat(request: UserRequest, agent: Agent = Depends(get_agent)):
     return _get_agent_response(agent, state, request.thread_id)
 
 
-@router.post("/resume")
+@router.post("/resume", response_model=AgentResponse)
 async def resume(action_results: ActionResults, agent: Agent = Depends(get_agent)):
     tool_messages = [
         ToolMessage(tool_call_id=result.tool_call_id, name=result.name, content=result.content)
