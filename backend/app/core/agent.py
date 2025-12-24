@@ -84,16 +84,6 @@ class Agent(Runnable[AgentState, AgentState]):
         # We could add logic here to verify that all tool calls have results
         return state
 
-    def _call_tools(self, tool_calls: list[ToolCall]) -> Iterator[ToolMessage]:
-        for tool in tool_calls:
-            tool_name = tool["name"]
-            if tool_name not in self._tools:
-                result = f"Unknown tool name: {tool_name}"
-            else:
-                result = self._tools[tool_name].invoke(tool["args"])
-            logger.info(f"Tool {tool_name} result: {result}")
-            yield ToolMessage(tool_call_id=tool["id"], name=tool_name, content=str(result))
-
     def invoke(self, state: AgentState, config: RunnableConfig | None = None, **kwargs: Any) -> AgentState:
         return AgentState(**self._graph.invoke(state, config, **kwargs))
 
